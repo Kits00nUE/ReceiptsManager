@@ -49,7 +49,7 @@ class DataFragment : Fragment() {
             }
         }
 
-        //  Sprawdzamy różnice między starą a nową listą
+
         val oldSize = receipts.size
         val newSize = newReceipts.size
 

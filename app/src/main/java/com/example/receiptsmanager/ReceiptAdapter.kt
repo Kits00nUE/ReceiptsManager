@@ -76,7 +76,7 @@ class ReceiptAdapter(private val receipts: MutableList<Receipt>, private val con
         dialog.show()
     }
 
-    // 📤 Udostępnianie paragonu
+    //  Udostępnianie paragonu
     private fun shareReceipt(imagePath: String) {
         val file = File(imagePath)
 
@@ -105,7 +105,7 @@ class ReceiptAdapter(private val receipts: MutableList<Receipt>, private val con
         }
     }
 
-    // 🗑️ Usuwanie paragonu
+    //  Usuwanie paragonu
     private fun removeReceipt(position: Int) {
         val receipt = receipts[position]
         val file = File(receipt.imagePath)

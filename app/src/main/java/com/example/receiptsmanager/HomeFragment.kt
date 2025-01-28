@@ -38,7 +38,7 @@ class HomeFragment : Fragment() {
     private var photoURI: Uri? = null
     private lateinit var currentPhotoPath: String
 
-    // 🔹 Launcher dla nowego systemu uprawnień (Android 11+)
+
     private val requestPermissionLauncher =
         registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
             if (isGranted) {
@@ -48,7 +48,7 @@ class HomeFragment : Fragment() {
             }
         }
 
-    // 🔹 Launcher dla nowego systemu `startActivityForResult()`
+
     private val cameraLauncher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == Activity.RESULT_OK) {
@@ -84,7 +84,7 @@ class HomeFragment : Fragment() {
         return view
     }
 
-    // 🔹 Sprawdzanie i proszenie o uprawnienia do aparatu
+    //  Sprawdzanie i proszenie o uprawnienia do aparatu
     private fun checkCameraPermission() {
         when {
             ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED -> {
@@ -96,7 +96,7 @@ class HomeFragment : Fragment() {
         }
     }
 
-    // 🔹 Otwieranie aparatu
+    //  Otwieranie aparatu
     private fun openCamera() {
         val cameraIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
         val photoFile: File? = try {
@@ -114,7 +114,7 @@ class HomeFragment : Fragment() {
         }
     }
 
-    // 🔹 Tworzenie pliku na zdjęcie
+    //  Tworzenie pliku na zdjęcie
     @Throws(IOException::class)
     private fun createImageFile(): File {
         val timeStamp = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(Date())
@@ -124,7 +124,7 @@ class HomeFragment : Fragment() {
         }
     }
 
-    // 🔹 Zapisywanie danych o paragonie w SharedPreferences
+    //  Zapisywanie danych o paragonie w SharedPreferences
     private fun saveReceiptToStorage(description: String, imagePath: String) {
         val sharedPreferences = requireContext().getSharedPreferences("ReceiptsData", Context.MODE_PRIVATE)
         val editor = sharedPreferences.edit()
@@ -136,7 +136,7 @@ class HomeFragment : Fragment() {
         editor.apply()
     }
 
-    // 🔹 Tworzenie kanału powiadomień
+    //  Tworzenie kanału powiadomień
     private fun createNotificationChannel() {
 
             val name = "Receipt Notifications"
@@ -151,7 +151,7 @@ class HomeFragment : Fragment() {
 
     }
 
-    // 🔹 Wyświetlanie powiadomienia o nowym paragonie
+    //  Wyświetlanie powiadomienia o nowym paragonie
     private fun showNotification(description: String) {
         val sharedPreferences = requireContext().getSharedPreferences("AppSettings", Context.MODE_PRIVATE)
         val isNotificationsEnabled = sharedPreferences.getBoolean("notifications_enabled", true)
