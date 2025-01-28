@@ -42,13 +42,14 @@ class DataFragment : Fragment() {
             val parts = it.split("|")
             if (parts.size == 2) {
                 val file = File(parts[1])
-                if (file.exists()) { // Sprawdzamy, czy plik istnieje
+                if (file.exists()) { // Sprawdzamy, czy plik zdjęcia istnieje
                     receipts.add(Receipt(parts[0], parts[1]))
                 }
             }
         }
 
-        // 🔹 Teraz możemy powiadomić adapter o zmianie danych
         adapter.notifyDataSetChanged()
     }
+
 }
+

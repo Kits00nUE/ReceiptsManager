@@ -125,8 +125,8 @@ class HomeFragment : Fragment() {
         val sharedPreferences = requireContext().getSharedPreferences("ReceiptsData", Context.MODE_PRIVATE)
         val editor = sharedPreferences.edit()
 
-        val receiptsList = sharedPreferences.getStringSet("receipts", mutableSetOf()) ?: mutableSetOf()
-        receiptsList.add("$description|$imagePath")
+        val receiptsList = sharedPreferences.getStringSet("receipts", mutableSetOf())?.toMutableSet()
+        receiptsList?.add("$description|$imagePath") // Format: "Nazwa paragonu|Ścieżka do zdjęcia"
 
         editor.putStringSet("receipts", receiptsList)
         editor.apply()

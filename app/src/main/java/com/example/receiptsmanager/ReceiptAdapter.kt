@@ -51,20 +51,23 @@ class ReceiptAdapter(private val receipts: MutableList<Receipt>, private val con
     private fun removeReceipt(position: Int) {
         val receipt = receipts[position]
         val file = File(receipt.imagePath)
+
         if (file.exists()) {
-            file.delete() // Usunięcie pliku z pamięci
+            file.delete() // 🔥 Usunięcie zdjęcia z pamięci
         }
 
-        receipts.removeAt(position) // Usunięcie z listy
+        receipts.removeAt(position) // 🔥 Usunięcie z listy w aplikacji
         notifyItemRemoved(position)
 
         val sharedPreferences = context.getSharedPreferences("ReceiptsData", Context.MODE_PRIVATE)
         val editor = sharedPreferences.edit()
         val receiptsList = sharedPreferences.getStringSet("receipts", mutableSetOf())?.toMutableSet()
-        receiptsList?.remove("${receipt.description}|${receipt.imagePath}")
+        receiptsList?.remove("${receipt.description}|${receipt.imagePath}") // 🔥 Usunięcie z `SharedPreferences`
+
         editor.putStringSet("receipts", receiptsList)
         editor.apply()
     }
+
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val description: TextView = view.findViewById(R.id.tv_receipt_description)
