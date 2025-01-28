@@ -13,6 +13,7 @@
         android:layout_height="wrap_content"
         android:hint="Wpisz podpis paragonu"
         android:textColor="@android:color/black"
+        android:textColorHint="@color/gray"
         android:inputType="text"
         android:padding="10dp"
         android:background="@android:drawable/edit_text"
