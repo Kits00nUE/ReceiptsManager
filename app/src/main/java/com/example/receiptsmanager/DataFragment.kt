@@ -1,5 +1,6 @@
 package com.example.receiptsmanager
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -23,33 +24,49 @@ class DataFragment : Fragment() {
         recyclerView = view.findViewById(R.id.recycler_view)
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
-        // 🔹 Najpierw tworzymy adapter, zanim wywołamy loadReceipts()
         adapter = ReceiptAdapter(receipts, requireContext())
         recyclerView.adapter = adapter
 
-        // 🔹 Dopiero teraz możemy załadować zapisane paragony
         loadReceipts()
 
         return view
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     private fun loadReceipts() {
-        val sharedPreferences = requireContext().getSharedPreferences("ReceiptsData", Context.MODE_PRIVATE)
+        val sharedPreferences =
+            requireContext().getSharedPreferences("ReceiptsData", Context.MODE_PRIVATE)
         val receiptsList = sharedPreferences.getStringSet("receipts", emptySet()) ?: emptySet()
 
-        receipts.clear()
+        val newReceipts = mutableListOf<Receipt>()
         receiptsList.forEach {
             val parts = it.split("|")
             if (parts.size == 2) {
                 val file = File(parts[1])
-                if (file.exists()) { // Sprawdzamy, czy plik zdjęcia istnieje
-                    receipts.add(Receipt(parts[0], parts[1]))
+                if (file.exists()) {
+                    newReceipts.add(Receipt(parts[0], parts[1]))
                 }
             }
         }
 
-        adapter.notifyDataSetChanged()
+        //  Sprawdzamy różnice między starą a nową listą
+        val oldSize = receipts.size
+        val newSize = newReceipts.size
+
+        if (newSize > oldSize) {
+            receipts.addAll(newReceipts.subList(oldSize, newSize))
+            adapter.notifyItemRangeInserted(oldSize, newSize - oldSize)
+        } else if (newSize < oldSize) {
+            receipts.clear()
+            receipts.addAll(newReceipts)
+            adapter.notifyItemRangeRemoved(
+                newSize,
+                oldSize - newSize
+            )
+        } else {
+            receipts.clear()
+            receipts.addAll(newReceipts)
+            adapter.notifyDataSetChanged()
+        }
     }
-
 }
-

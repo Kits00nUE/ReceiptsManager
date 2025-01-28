@@ -11,7 +11,8 @@
         android:id="@+id/btn_instruction"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Instrukcja"
+        android:text="@string/btn_instruction"
+        android:layout_gravity="center_horizontal"
         android:padding="12dp"
         android:backgroundTint="@color/purple"
         android:textColor="@android:color/white"
@@ -25,7 +26,8 @@
         android:id="@+id/btn_faq"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="FAQ"
+        android:text="@string/btn_faq"
+        android:layout_gravity="center_horizontal"
         android:padding="12dp"
         android:backgroundTint="@color/purple"
         android:textColor="@android:color/white"
@@ -33,5 +35,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="20dp"/>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

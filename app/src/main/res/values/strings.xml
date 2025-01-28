@@ -1,4 +1,6 @@
 <resources>
     <string name="app_name">ReceiptsManager</string>
     <string name="data_fragment" />
+    <string name="btn_faq">FAQ</string>
+    <string name="btn_instruction">Instrukcja</string>
 </resources>

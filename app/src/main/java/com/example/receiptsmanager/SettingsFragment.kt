@@ -34,22 +34,48 @@ class SettingsFragment : Fragment() {
 
     // Funkcja wyświetlająca instrukcję obsługi
     private fun showInstructionDialog() {
-        val message = """
-            📌 Jak używać aplikacji?
-            
-            1️⃣ Otwórz zakładkę "Home".
-            2️⃣ Wpisz nazwę lub opis paragonu.
-            3️⃣ Kliknij "Zrób zdjęcie" i sfotografuj paragon.
-            4️⃣ Zdjęcie zostanie zapisane w aplikacji.
-            5️⃣ Przejdź do zakładki "Data", aby zobaczyć wszystkie zapisane paragony.
-        """.trimIndent()
+        val instructionText = """
+        📌 **Instrukcja obsługi aplikacji „Paragony”** 📌
+        
+        🔹 **Cel aplikacji:** 
+        Aplikacja pozwala na zapisywanie, przeglądanie i udostępnianie paragonów.
+
+        ✅ **Jak dodać nowy paragon?**
+        1️⃣ Przejdź do zakładki **Home** (🏠).  
+        2️⃣ Wpisz nazwę paragonu w polu tekstowym.  
+        3️⃣ Kliknij **„Zrób zdjęcie”** – otworzy się aparat.  
+        4️⃣ Zrób zdjęcie i zatwierdź – paragon zostanie zapisany w pamięci.
+
+        🔍 **Jak przeglądać paragony?**
+        1️⃣ Przejdź do zakładki **Paragony** (📜).  
+        2️⃣ Znajdziesz tam listę zapisanych paragonów.  
+        3️⃣ Kliknij nazwę paragonu, aby zobaczyć jego pełny podgląd.  
+
+        📤 **Jak udostępnić paragon?**
+        1️⃣ W zakładce **Paragony** kliknij przycisk **„📤 Udostępnij”** obok wybranego paragonu.  
+        2️⃣ Wybierz aplikację, przez którą chcesz udostępnić zdjęcie.  
+
+        🗑 **Jak usunąć paragon?**
+        1️⃣ Kliknij ikonę kosza **„🗑 Usuń”** obok wybranego paragonu.  
+        2️⃣ Paragon zostanie trwale usunięty z aplikacji.  
+
+        🔔 **Powiadomienia:**  
+        Po dodaniu nowego paragonu pojawi się powiadomienie potwierdzające jego zapis.  
+
+        ℹ️ **Dodatkowe informacje:**  
+        - Aplikacja nie przechowuje paragonów w chmurze – wszystkie dane są lokalne.  
+        - Po usunięciu paragonu **nie można go odzyskać**.  
+
+        ✅ **Gotowe! Teraz możesz bezpiecznie zarządzać swoimi paragonami.**
+    """.trimIndent()
 
         AlertDialog.Builder(requireContext())
-            .setTitle("Instrukcja Obsługi")
-            .setMessage(message)
+            .setTitle("📖 Instrukcja obsługi")
+            .setMessage(instructionText)
             .setPositiveButton("OK") { dialog, _ -> dialog.dismiss() }
             .show()
     }
+
 
     // Funkcja wyświetlająca żartobliwe FAQ
     private fun showFaqDialog() {
@@ -66,4 +92,5 @@ class SettingsFragment : Fragment() {
             .setPositiveButton("OK") { dialog, _ -> dialog.dismiss() }
             .show()
     }
+
 }
